@@ -1,8 +1,12 @@
+package com.example.studenteventsapp
+
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import com.example.studenteventsapp.R
+import android.app.Activity
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

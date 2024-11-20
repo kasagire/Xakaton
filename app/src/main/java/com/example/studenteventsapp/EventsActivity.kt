@@ -1,3 +1,5 @@
+package com.example.studenteventsapp
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager

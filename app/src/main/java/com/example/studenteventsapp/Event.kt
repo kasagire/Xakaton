@@ -1,3 +1,5 @@
+package com.example.studenteventsapp
+
 data class Event(
         val id: Int,
         val title: String,

@@ -1,3 +1,5 @@
+package com.example.studenteventsapp
+
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.os.Bundle
