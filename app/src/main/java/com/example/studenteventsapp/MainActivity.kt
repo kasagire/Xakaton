@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+import com.example.studenteventsapp.R
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
