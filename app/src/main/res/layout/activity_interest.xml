@@ -4,15 +4,14 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/eventsTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Предстоящие мероприятия"
+        android:text="Выберите ваши интересы"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:padding="16dp" />
 
-    <RecyclerView
-        android:id="@+id/recyclerViewEvents"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/interestsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

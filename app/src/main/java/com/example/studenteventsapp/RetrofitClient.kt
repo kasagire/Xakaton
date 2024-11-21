@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "http://192.168.56.1:5000/" // Замените на IP-адрес вашего сервера
+    private const val BASE_URL = "http://192.168.56.1:5000/"
 
     private val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
