@@ -1,3 +1,5 @@
+package com.example.studenteventsapp
+
 data class Interest(
         val id: Int,
         val name: String

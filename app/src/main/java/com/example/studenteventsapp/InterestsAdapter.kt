@@ -1,18 +1,22 @@
+package com.example.studenteventsapp
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.studenteventsapp.R
+
+interface OnInterestClickListener {
+    fun onInterestClick(interest: Interest)
+}
 class InterestsAdapter(
     private val interests: List<Interest>,
-    private val clickListener: (Interest) -> Unit
+    private val clickListener: InterestActivity
 ) : RecyclerView.Adapter<InterestsAdapter.InterestViewHolder>() {
 
     inner class InterestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(interest: Interest) {
             itemView.findViewById<TextView>(R.id.interestName).text = interest.name
-            itemView.setOnClickListener { clickListener(interest) }
         }
     }
 

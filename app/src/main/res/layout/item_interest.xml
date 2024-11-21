@@ -5,6 +5,9 @@
     android:padding="16dp">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Спасибо за ваш выбор"
         android:id="@+id/interestName"
         android:textSize="18sp"/>
 </LinearLayout>

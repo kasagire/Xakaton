@@ -13,16 +13,17 @@ class MainActivity : AppCompatActivity() {
 
         // Кнопки для перехода на экраны интересов и мероприятий
         val buttonInterests = findViewById<Button>(R.id.buttonInterests)
-        val buttonEvents = findViewById<Button>(R.id.buttonEvents)
-
         buttonInterests.setOnClickListener {
-            val intent = Intent(this, InterestActivity::class.java)
+            val intent = Intent(this@MainActivity, InterestActivity::class.java)
+
             startActivity(intent)
         }
 
-        buttonEvents.setOnClickListener {
-            val intent = Intent(this, EventActivity::class.java)
+        val openEventButton = findViewById<Button>(R.id.buttonEvents)
+        openEventButton.setOnClickListener {
+            // Start EventActivity when the button is clicked
+            val intent = Intent(this@MainActivity, EventActivity::class.java)
             startActivity(intent)
         }
-    }
+       }
 }

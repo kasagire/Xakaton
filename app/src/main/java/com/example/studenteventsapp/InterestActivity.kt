@@ -1,12 +1,11 @@
 package com.example.studenteventsapp
 
-import Interest
-import InterestsAdapter
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.studenteventsapp.R
+
 class InterestActivity : AppCompatActivity() {
 
     private lateinit var interestsRecyclerView: RecyclerView
@@ -15,7 +14,6 @@ class InterestActivity : AppCompatActivity() {
         Interest(1, "Наука"),
         Interest(2, "Спорт"),
         Interest(3, "Искусство"),
-        // Добавьте другие интересы
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +21,12 @@ class InterestActivity : AppCompatActivity() {
         setContentView(R.layout.activity_interest)
 
         interestsRecyclerView = findViewById(R.id.interestsRecyclerView)
-        interestsAdapter = InterestsAdapter(interestsList) { interest ->
-            // Логика обработки выбора интереса
-        }
+        interestsAdapter = InterestsAdapter(interestsList, this)
         interestsRecyclerView.adapter = this.interestsAdapter
         interestsRecyclerView.layoutManager = LinearLayoutManager(this)
+    }
+    fun onInterestClick(interest: Interest) {
+        Toast.makeText(this, "Вы выбрали интерес: ${interest.name}", Toast.LENGTH_SHORT).show()
+
     }
 }

@@ -15,7 +15,8 @@
         </activity>
 
         <activity android:name="com.example.studenteventsapp.InterestActivity" />
-        <activity android:name="com.example.studenteventsapp.EventActivity" />
+        <activity android:name="com.example.studenteventsapp.EventActivity"
+            android:label="EventActivity"/>
 
     </application>
 

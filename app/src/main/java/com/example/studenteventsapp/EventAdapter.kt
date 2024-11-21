@@ -1,10 +1,14 @@
+package com.example.studenteventsapp
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.studenteventsapp.R
-class EventsAdapter(private val events: List<Event>) : RecyclerView.Adapter<EventsAdapter.EventViewHolder>() {
+
+interface OnEventClickListener {
+    fun onEventClick(event: Event)
+}
+class EventsAdapter(private val events: List<Event>, private val listener: EventActivity) : RecyclerView.Adapter<EventsAdapter.EventViewHolder>() {
 
     inner class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(event: Event) {
@@ -12,6 +16,7 @@ class EventsAdapter(private val events: List<Event>) : RecyclerView.Adapter<Even
             itemView.findViewById<TextView>(R.id.eventCategory).text = event.category
             itemView.findViewById<TextView>(R.id.eventDate).text = event.date
             itemView.setOnClickListener {
+                listener.onEventClick(event)
                 // Логика обработки нажатия на мероприятие
             }
         }
