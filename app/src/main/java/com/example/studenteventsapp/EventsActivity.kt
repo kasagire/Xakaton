@@ -31,7 +31,7 @@ class ActivityEvent : AppCompatActivity() {
     }
 
     fun loadEvents() {
-        val url = "http://127.0.0.1:5000/events"
+        val url = "http://192.168.0.72:5000/events"
 
         val client = OkHttpClient()
         val request = Request.Builder()
