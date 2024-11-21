@@ -42,7 +42,7 @@ android {
 }
 
 dependencies {
-
+    implementation ("com.squareup.okhttp3:okhttp:4.10.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.21") // Укажите актуальную версию Kotlin
     implementation("androidx.appcompat:appcompat:1.7.0") // Библиотека поддержки
     implementation("androidx.core:core-ktx:1.15.0") // KTX для более удобного использования API
@@ -73,7 +73,8 @@ dependencies {
     implementation("androidx.compose.ui:ui:1.7.5") // Latest stable version of UI components
     implementation("androidx.compose.material3:material3:1.3.1") // Material 3 components
     implementation("androidx.compose.ui:ui-tooling-preview:1.7.5") // Preview support
-    implementation("androidx.activity:activity-compose:1.9.3") // Activity support for Compose
+    implementation("androidx.activity:activity-compose:1.9.3")
+    testImplementation("junit:junit:4.12") // Activity support for Compose
 }
 
 // Опционально: если у вас есть специфические настройки для тестирования

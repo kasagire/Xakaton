@@ -1,71 +1,65 @@
 package com.example.studenteventsapp
 
-
-import android.content.Intent
+import com.example.studenteventsapp.EventAdapter
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.GsonBuilder
-import okhttp3.Response
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.google.gson.Gson
+import okhttp3.*
+import org.json.JSONArray
+import java.io.IOException
 
-class EventActivity : AppCompatActivity() {
+class ActivityEvent : AppCompatActivity() {
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: EventAdapter
 
-    private lateinit var eventsRecyclerView: RecyclerView
-    private lateinit var eventsAdapter: EventsAdapter
-    private val eventsList = mutableListOf<Event>()
-    private val BASE_URL = "http://192.168.56.1:5000/"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
 
-        eventsRecyclerView = findViewById(R.id.eventsRecyclerView)
-        eventsAdapter = EventsAdapter(eventsList, this)
-        eventsRecyclerView.adapter = eventsAdapter
-        eventsRecyclerView.layoutManager = LinearLayoutManager(this)
+        // Настройка RecyclerView
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = EventAdapter(emptyList())
+        recyclerView.adapter = adapter
 
-        fetchEvents()
+        // Загрузка мероприятий
+        loadEvents()
     }
 
-    private fun fetchEvents() {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+    fun loadEvents() {
+        val url = "http://127.0.0.1:5000/events"
+
+        val client = OkHttpClient()
+        val request = Request.Builder()
+            .url(url)
             .build()
 
-        val apiService = retrofit.create(ApiService::class.java)
-
-        /*apiService.getEvents().enqueue(object : Callback<List<Event>> {
-            override fun onResponse(call: Call<List<Event>>,response: Response<List<Event>>) {
-                if (response.isSuccessful) {
-                    response.body()?.let { events ->
-                        eventsList.clear()
-                        eventsList.addAll(events)
-                        eventsAdapter.notifyDataSetChanged()
-                    } ?: run {
-                        Log.e("EventActivity", "Response body is null")
-                    }
-                } else {
-                    Log.e("EventActivity", "Error fetching events: ${response.code()}")
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@ActivityEvent, "Ошибка подключения к серверу", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<List<Event>>, t: Throwable) {
-                Log.e("EventActivity", "Failure fetching events", t)
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    val responseData = response.body?.string()
+                    if (responseData != null) {
+                        val events = Gson().fromJson(responseData, Array<Event>::class.java).toList()
+                        runOnUiThread {
+                            adapter.updateData(events)
+                        }
+                    }
+                } else {
+                    runOnUiThread {
+                        Toast.makeText(this@ActivityEvent, "Ошибка на сервере: ${response.code}", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
-        })*/
-
-    }
-    fun onEventClick(event: Event) {
-
-        val intent = Intent(this, EventDetailsActivity::class.java).apply {
-            putExtra("EVENT_ID", event.id)
-        }
-        startActivity(intent)
+        })
     }
 }
