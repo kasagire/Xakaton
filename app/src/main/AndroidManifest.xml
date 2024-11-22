@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".InterestSelectionActivity" />
+        <activity android:name=".RecommendedEventsActivity" />
         <activity android:name="com.example.studenteventsapp.InterestActivity" />
         <activity android:name="com.example.studenteventsapp.ActivityEvent"
             android:label="ActivityEvent"/>

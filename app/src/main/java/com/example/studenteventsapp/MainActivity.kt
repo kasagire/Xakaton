@@ -11,19 +11,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Кнопки для перехода на экраны интересов и мероприятий
+        // Кнопка для перехода на экран выбора интереса
         val buttonInterests = findViewById<Button>(R.id.buttonInterests)
         buttonInterests.setOnClickListener {
-            val intent = Intent(this@MainActivity, InterestActivity::class.java)
-
+            val intent = Intent(this@MainActivity, InterestSelectionActivity::class.java)
             startActivity(intent)
         }
 
+        // Кнопка для перехода на экран с мероприятиями
         val openEventButton = findViewById<Button>(R.id.buttonEvents)
         openEventButton.setOnClickListener {
-            // Start EventActivity when the button is clicked
             val intent = Intent(this@MainActivity, ActivityEvent::class.java)
             startActivity(intent)
         }
-       }
+    }
 }

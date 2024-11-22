@@ -10,4 +10,5 @@ data class Event(
         val title: String,
         val category: String,
         val date: String,
+        val interest: String // Новая переменная для категории
 )
